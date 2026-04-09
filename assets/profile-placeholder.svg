@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Profile placeholder</title>
+  <desc id="desc">Abstract gradient portrait placeholder for portfolio hero.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <radialGradient id="orb" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="420" cy="280" r="240" fill="url(#orb)"/>
+  <circle cx="400" cy="250" r="100" fill="#e2e8f0" fill-opacity="0.9"/>
+  <path d="M220 520c45-95 120-145 180-145s135 50 180 145" fill="#cbd5e1" fill-opacity="0.88"/>
+</svg>
