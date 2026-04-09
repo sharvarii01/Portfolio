@@ -809,44 +809,126 @@ html[data-theme="light"] .cert-item:hover {
 
 .timeline {
     position: relative;
-    margin-left: 0.6rem;
-    border-left: 1px solid var(--border);
-    padding-left: 1.5rem;
     display: grid;
-    gap: 2rem;
+    gap: 1.35rem;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 0.2rem;
+    bottom: 0.2rem;
+    left: 50%;
+    width: 3px;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(96, 165, 250, 0.25), rgba(59, 130, 246, 0.55), rgba(96, 165, 250, 0.25));
 }
 
 .timeline-item {
     position: relative;
+    width: 50%;
 }
 
-.timeline-item::before {
-    content: "";
-    position: absolute;
-    left: -1.8rem;
-    top: 0.4rem;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--brand);
-    box-shadow: 0 0 10px var(--ring);
+.timeline-item:nth-child(odd) {
+    justify-self: start;
+    padding-right: 2.2rem;
 }
 
-.timeline-item span {
-    color: var(--muted);
-    font-size: 0.85rem;
-    display: block;
-    margin-bottom: 0.2rem;
+.timeline-item:nth-child(even) {
+    justify-self: end;
+    padding-left: 2.2rem;
+}
+
+.timeline-card {
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1rem 1.1rem;
+    display: grid;
+    gap: 0.45rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+html[data-theme="light"] .timeline-card {
+    border-color: rgba(15, 23, 42, 0.11);
+    background: rgba(255, 255, 255, 0.72);
+}
+
+.timeline-item:hover .timeline-card {
+    transform: translateY(-4px);
+    border-color: rgba(59, 130, 246, 0.32);
+    box-shadow: 0 16px 24px rgba(2, 6, 23, 0.14);
+}
+
+.timeline-year {
+    color: var(--brand);
+    font-size: 0.74rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
 .timeline-item h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.3rem;
+    font-size: 1.12rem;
+    line-height: 1.25;
+    margin: 0;
 }
 
-.timeline-item p {
+.timeline-sub {
+    color: color-mix(in srgb, var(--text) 80%, var(--muted) 20%);
+    font-size: 0.85rem;
+    line-height: 1.45;
+    margin: 0;
+}
+
+.timeline-story {
     color: var(--muted);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.timeline-icon {
+    position: absolute;
+    top: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    border: 2px solid rgba(96, 165, 250, 0.55);
+    background: color-mix(in srgb, var(--surface-solid) 75%, transparent 25%);
+    color: var(--brand);
+    box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    z-index: 2;
+}
+
+.timeline-item:nth-child(odd) .timeline-icon {
+    right: -1rem;
+}
+
+.timeline-item:nth-child(even) .timeline-icon {
+    left: -1rem;
+}
+
+.timeline-item:hover .timeline-icon {
+    transform: scale(1.05);
+    border-color: rgba(191, 219, 254, 0.85);
+    box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.2);
+    background: color-mix(in srgb, var(--brand) 18%, var(--surface-solid) 82%);
+}
+
+html[data-theme="light"] .timeline-item:hover .timeline-card {
+    box-shadow: 0 14px 22px rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme="light"] .timeline-icon {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(59, 130, 246, 0.38);
 }
 
 .project-links {
@@ -1321,6 +1403,36 @@ html[data-theme="dark"] .contact-form textarea {
         flex: 1 1 calc(50% - 0.35rem);
         text-align: center;
     }
+
+    .timeline {
+        gap: 1rem;
+    }
+
+    .timeline::before {
+        left: 1rem;
+        transform: none;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        width: 100%;
+        justify-self: stretch;
+        padding-left: 2.5rem;
+        padding-right: 0;
+    }
+
+    .timeline-item .timeline-icon,
+    .timeline-item:nth-child(odd) .timeline-icon,
+    .timeline-item:nth-child(even) .timeline-icon {
+        left: 0;
+        right: auto;
+        top: 0.85rem;
+    }
+
+    .timeline-card {
+        padding: 0.95rem;
+    }
 }
 
 @media (min-width: 760px) and (max-width: 1023px) {
@@ -1336,7 +1448,7 @@ html[data-theme="dark"] .contact-form textarea {
     }
 
     .timeline {
-        margin-left: 1rem;
+        gap: 1.6rem;
     }
 
     #projects,
